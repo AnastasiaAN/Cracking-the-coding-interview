@@ -1,0 +1,5 @@
+3.Design an algorithm and write code to remove the duplicate characters in a string without using any additional buffer. NOTE: One or two additional variables are fine. An extra copy of the array is not.
+
+Solution 1
+Hints:
+由于可用多余变量，考虑到string中的char有256个，可用256/32=8个Int来标记每个字符是否出现
