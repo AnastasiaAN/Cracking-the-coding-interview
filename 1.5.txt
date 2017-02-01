@@ -1,0 +1,19 @@
+5.Write a method to replace all spaces in a string with ‘%20’.
+
+Solution 1
+---------------
+Hints:
+扫描得到空格数count
+char *cc = new char[len+2*count]
+cc[len+2*count+1] = '\0';
+---------------
+
+Solution 2
+---------------
+若空间够，利用原string位置
+倒序更改
+string ReplaceSpace(string sample)
+{
+	
+}
+--------------

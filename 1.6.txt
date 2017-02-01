@@ -1,0 +1,12 @@
+6.Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+
+Solution 1
+----------
+Hints:
+先对角交换，再水平行交换
+----------
+
+延展问题：一个M*N矩阵用数组的形式储存 怎么用O（1）空间得出将矩阵旋转90°的结果
+http://blog.csdn.net/danfeng827/article/details/7253796/
+（循环至满足条件，得出应该交换的值现在所在的(i,j)。此问可用同样方法做。）
+（TODO）

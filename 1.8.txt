@@ -1,0 +1,7 @@
+8 Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (i.e., “waterbottle” is a rotation of “erbottlewat”).
+
+Solution 1
+----------
+Hints:
+要判断s2是不是s1的旋转字串
+拼接s1+s1,调用substring
