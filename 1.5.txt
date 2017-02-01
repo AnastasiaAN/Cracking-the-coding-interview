@@ -10,10 +10,80 @@ cc[len+2*count+1] = '\0';
 
 Solution 2
 ---------------
-若空间够，利用原string位置
+若空间够，利用原char串位置
 倒序更改
-string ReplaceSpace(string sample)
+---------------
+另分配空间的办法：
+
+
+#include<string>
+#include<iostream>
+using namespace std;
+
+
+string ReplaceSpace1(string &a)
 {
-	
+	string b = "";
+	int size = a.size();
+	int i = 0;
+	char ch;
+	while (i < size)
+	{
+		ch = a[i];
+		if (ch == ' ')
+		{
+			b+="20%";
+		}
+		else
+		{
+			b += ch;
+		}
+		i++;
+	}
+	cout << b;
+	return b;
+};
+
+char* ReplaceSpace2(char a[])
+{
+
+	int size = strlen(a);
+	char* b = new char[3*size+1];//此处直接用的3*size分配的最大可能空间
+	//cout << size<<endl<<strlen(b) << endl;
+	int i = 0,index=0;
+	char ch;
+	while (i < size)
+	{
+		ch = a[i];
+		if (ch == ' ')
+		{
+			b[index] = '2';
+			b[index + 1] = '0';
+			b[index + 2] = '%';
+			index += 3;
+		}
+		else
+		{
+			b[index]= ch;
+			index++;
+		}
+		i++;
+	}
+	b [index]= '\0';
+	cout << b<<endl<<strlen(b);
+	return b;
 }
+
+
+
+int main() {
+	string a = "test sample ";
+	ReplaceSpace1(a);
+	char b[] = "test sample ";
+	cout << strlen(b) << endl;
+	ReplaceSpace2(b);
+	return 0;
+}
+
+
 --------------
