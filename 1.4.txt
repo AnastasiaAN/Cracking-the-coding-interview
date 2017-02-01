@@ -1,0 +1,114 @@
+4.Write a method to decide if two strings are anagrams or not.
+（anagram:打乱字符顺序的重组词）
+
+Hints:
+1.将两string中的字符排序后依次对应比较
+  O(nlogn)
+2.比较两string中字符出现次数
+  O(n)
+
+
+Solution 1
+----------
+#include<vector>
+#include<string>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+bool compare(char a, char b)
+{
+	return a < b;
+}
+bool anagram(string a, string b)
+{
+	//预处理：长度不一样 return false
+	int lenA = a.size();
+	int lenB = b.size();
+	if (lenA != lenB)
+	{
+		return false;
+	}
+	char ch;
+	vector<char>aCh, bCh;
+	int i = 0;
+	ch = a[0];
+	while (ch)
+	{
+		aCh.push_back(ch);
+		ch = b[i];
+		bCh.push_back(ch);
+		i++;
+		ch = a[i];
+	}
+	sort(aCh.begin(), aCh.end(), compare);
+	sort(bCh.begin(), bCh.end(), compare);
+	for (i = 0; i < lenA; i++)
+	{
+		if (aCh[i] != bCh[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+int main() {
+	string a = "test";
+	string b = "ttes";
+	bool answer = anagram(a, b);
+	cout << answer;
+	return 0;
+
+}
+
+----------------
+Tips:
+vector自带的sort方法无法对char型进行排序
+可以用自写的compare函数进行重载
+return a < b 为升序排列
+注意格式为sort(sample.begin(),sample.end(),compare);需include<algorithm>
+compare中用 char a 和 char & a 结果相同
+----------------
+Improve
+http://www.hawstein.com/posts/1.4.html
+string a="blahblah";
+int len=a.length();
+sort(&a[0],&a[0]+len);
+
+Solution 2
+----------------
+#include<vector>
+#include<string>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+bool anagram(string a, string b)
+{
+
+	int lenA = a.size();
+	int lenB = b.size();
+	if (lenA != lenB)
+	{
+		return false;
+	}
+	int count[256];
+	memset(count, 0, sizeof(count));
+	int i,index;
+	for (i = 0; i < lenA; i++)
+	{
+		index = (int)a[i];
+		count[index]++;
+		index = (int)b[i];
+		count[index]--;
+	}
+	for (index = 0; index < 256; index++)
+	{
+		if (count[index] != 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
